@@ -1,0 +1,37 @@
+<p>get-customer-by-id works!</p>
+<form action="" #getcustomers = "ngForm" (ngSubmit) = "FindCustomer(getcustomers)">
+    <div>
+        <label for="Custid">Customer ID</label>
+        <input type="text" name="Custid" [(ngModel)]="cust.Custid" #Custid = "ngModel" id="Custid" placeholder="Enter Customer ID" required>
+        <span *ngIf="Custid.errors?.required">Customer id cannot be blank</span>
+    </div>
+    <div>
+        <button type="submit" [disabled] = getcustomers.invalid>Find</button>
+    </div>
+</form>
+<hr>
+<table border="1">
+    <tr>
+        
+        <th>RegNumber</th>
+        <th>CustName</th>
+        <th>PhoneNo</th>
+        <th>CustEmail</th>
+        <th>CustUsername</th>
+        <th>CustAddress</th>
+        <th>CardType</th>
+        <th>BankName</th>
+      
+
+    </tr>
+    <tr>
+        <td>{{RegNumber}}</td>
+        <td>{{CustName}}</td>
+        <td>{{PhoneNo}}</td>
+        <td>{{CustEmail}}</td>
+        <td>{{CustUsername}}</td>
+        <td>{{CustAddress}}</td>
+        <td>{{CardType}}</td>
+        <td>{{BankName}}</td>
+    </tr>
+</table>
