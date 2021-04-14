@@ -12,7 +12,9 @@ import { LoginComponent } from './components/login/login.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
-
+import * as bootstrap from 'bootstrap';
+import * as $ from 'jquery';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { UserLoginComponent } from './components/user-login/user-login.component
     RegisterComponent,
     FooterComponent,
     NavigationBarComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

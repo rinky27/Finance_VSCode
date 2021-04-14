@@ -1,0 +1,55 @@
+<div><h2>Dashboard</h2></div>
+<!--<form #idform="ngForm" name="idform" (ngSubmit)="CardDetails(idform)">
+    <div>Registration No</div>
+        <input type="text" name="regno" [(ngModel)]="model.regno" #regno="ngModel" required><br><br>
+        <span *ngIf="regno.errors?.required" style="color: red;">RegNo cannot be blank</span>
+    <div>
+        <br>
+        <button type="submit" [disabled]="idform.invalid">Submit Reg No</button>
+    </div>
+</form>-->
+
+
+<br>
+<div id="card" class="card center">
+    <p class="emi_card">Ś
+        EMI CARD
+    <img class="card_logo" src="../../../assets/images/emiLogo.jpg">
+    </p>
+
+    <img class="card_chip" src="../../../assets/images/cardChip1.jpg">
+    <h3 class="card_number">{{cardno}}</h3>
+    <p class="card_expiry"><span>Valid Till</span>{{validity}}</p>
+    <p class="card_name">{{custname}}</p>
+    <p class="card_type">{{cardtype}}</p>
+    <p class="activation_status">{{accountstatus}}</p>
+</div>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>Transaction ID</th>                
+            <th>Registration No</th>         
+            <th>Card Id</th>     
+            <th>Product Id</th>     
+            <th>Quantity</th>
+            <th>Total Amount</th> 
+            <th>Emi Duration</th>  
+            <th>EMI Paid</th>
+            <th>EMI Balance</th>
+            <th>Created Date</th>             
+        </tr>
+         <tr *ngFor="let value of order">
+             <td>{{value.TransactionID}}</td>
+             <td>{{value.RegNumber}}</td>
+             <td>{{value.CardID}}</td>
+             <td>{{value.ProductId}}</td>
+             <td>{{value.Quantity}}</td>
+             <td>{{value.TotalAmount}}</td>
+             <td>{{value.EMIDuration}}</td>
+             <td>{{value.EMIPaid}}</td>
+             <td>{{value.EMIBalance}}</td>
+             <td>{{value.CreatedDate}}</td>
+         </tr>Ś
+    </table>
+</div>

@@ -1,28 +1,42 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { Observer} from 'rxjs';
-//import {EmpInfoModule} from '../modules/emp-info/emp-info.module';
-import {UserLoginModule} from '../modules/user-login/user-login.module';
-import {Observable} from 'rxjs/internal/observable';
-import {HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { UserLoginComponent } from '../components/user-login/user-login.component';
-
+import { EmiCardInfoModule } from '../modules/emi-card-info/emi-card-info.module';
+import { OrderDetailsModule } from '../modules/order-details/order-details.module';
+import { UserLoginModule } from '../modules/user-login/user-login.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserLoginService {
+
   cust:UserLoginComponent;
   http:HttpClient;
-  url:string='http://localhost:56054/api/UserLoginAPI';
+  url:string='http://localhost:56054/api/UserLoginAPI/';
   httpOptions = {headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
   };
 
-  constructor(http:HttpClient) {this.http=http; }
+  constructor(http:HttpClient) {
+    this.http=http; 
+  }
 
   Login(name:string,pwd:string):Observable<string>{
-    return this.http.get<string>(this.url+"/"+"Login"+"/"+name+"/"+pwd);
+    return this.http.get<string>(this.url+"UserLogin"+"/"+name+"/"+pwd);
   }
+  /*GetCardDetails(registrationNo:number):Observable<EmiCardInfoModule>{
+    return this.http.get<EmiCardInfoModule>(this.url+"GetCardDetails"+"/"+registrationNo);
+  }
+  */
+  GetCardDetails(username:string):Observable<EmiCardInfoModule>{
+    return this.http.get<EmiCardInfoModule>(this.url+"GetCardDetails"+"/"+username);
+  }
+
+  GetOrderDetails(username:string):Observable<OrderDetailsModule[]>{
+    return this.http.get<OrderDetailsModule[]>(this.url+"GetOrderDetails"+"/"+username);
+  }
+
+
 }

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class UserLoginModule { 
-  Username:string;
-  Password:string;
+export class AdminInfoModule { 
+  AdminUsername:string;
+  AdminPassword:string;
 }

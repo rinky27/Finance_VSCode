@@ -9,7 +9,13 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class UserLoginModule { 
+export class EmiCardInfoModule { 
+  CardNumber:number;
+  RegNumber:number;
+  CardType:string;
+  CardLimit:number;
+  ValidityPeriod:string;
+  AccountStatus:string;
   Username:string;
-  Password:string;
+  CustName:string;
 }

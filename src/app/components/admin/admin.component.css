@@ -36,3 +36,12 @@ button:hover{
 .input-width{
     width: 300px;
 }
+.login-bg{
+    color:white;
+    background-color: #861657;
+    background-image: linear-gradient(326deg, #861657 0%, #ffa69e 74%);
+}
+.card-body{
+    background-color: #d9e4f5;
+    background-image: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
+}

@@ -8,12 +8,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+  RegisterData():void{
     
   }
- 
 
 }

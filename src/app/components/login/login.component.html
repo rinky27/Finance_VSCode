@@ -1,6 +1,18 @@
-<div>
-    <h3><a [routerLink]="['/Admin']" >Admin Login</a></h3>
+<div class="container common-margin" style="text-align: center;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="jumbotron login-bg">
+                <h2><a class="btn btn-primary btn-lg" [routerLink]="['/UserLogin']"  role="button">User Login</a></h2>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="jumbotron login-bg">
+                <h2><a class="btn btn-primary btn-lg" [routerLink]="['/Admin']"  role="button">Admin Login</a></h2>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <h3><a [routerLink]="['/UserLogin']" >User Login</a></h3>
-</div>
+<app-footer>
+
+</app-footer>
+
