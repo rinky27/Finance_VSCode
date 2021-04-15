@@ -1,3 +1,4 @@
+
 <p>get-all-customers works!</p>
 
  <table border="1">
@@ -11,7 +12,11 @@
         <th>CustAddress</th>
         <th>CardType</th>
         <th>BankName</th>
-      
+        <th>AccountNumber</th>
+        <th>IFSCCode</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Verify</th>
 
     </tr>
     <tr *ngFor="let item of custlist">
@@ -23,5 +28,13 @@
         <td>{{item.CustAddress}}</td>
         <td>{{item.CardType}}</td>
         <td>{{item.BankName}}</td>
+        <td>{{item.AccountNumber}}</td>
+        <td>{{item.IFSCCode}}</td>
+
+       <td> <a routerLink="/UpdateCustomer/{{item.RegNumber}}" class="btn btn-outline-primary" > Update Customer</a></td>
+       <td><a  class="btn btn-outline-primary" (click) ="DeleteCustomer(item.RegNumber)">DeleteCustomer</a></td>
+        <td><a class="btn btn-outline-primary" (click) ="VerifyCustomer(item.RegNumber)" >VerifyCustomer</a></td>
+       
     </tr>
 </table>
+
