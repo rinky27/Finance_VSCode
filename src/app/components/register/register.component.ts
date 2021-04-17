@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ReginfoModule } from 'src/app/modules/reginfo/reginfo.module';
 import { RegistrationinfoService } from 'src/app/services/registrationinfo.service';
 
@@ -13,8 +14,12 @@ export class RegisterComponent implements OnInit {
   model:any = [];
   svc:RegistrationinfoService;
   reg=new ReginfoModule();
-  constructor(svc:RegistrationinfoService) {
+  ngZone:NgZone;
+  router:Router;
+  constructor(svc:RegistrationinfoService,ngZone:NgZone,router:Router) {
     this.svc=svc;
+    this.ngZone = ngZone;
+    this.router=router;
    }
 
   ngOnInit(): void {
@@ -35,10 +40,17 @@ export class RegisterComponent implements OnInit {
     console.log(this.reg);
     console.log(this.model);
     this.svc.RegisterCustomer(this.reg).subscribe((data:boolean)=>{
-      alert(data);
       if(data==true){
-        alert("New Customer Registered");
+        alert("Your Registration is Complete");
+        this.ngZone.run(()=>this.router.navigateByUrl('/UserLogin'));
+
       }
-    })
+      else{
+        alert("Data not inserted");
+      }
+    },error => {
+      console.log(error);
+    alert ('Duplicate Values Found...');}
+    )
   }
 }

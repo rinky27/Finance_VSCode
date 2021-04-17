@@ -1,12 +1,10 @@
-// import { Component, OnInit } from '@angular/core';
-// import {NgForm} from '@angular/forms';
-// import {UserLoginModule} from '../../modules/user-login/user-login.module';
-// import {UserLoginService} from '../../services/user-login.service';
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit,NgZone } from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ReginfoModule } from 'src/app/modules/reginfo/reginfo.module';
 import { UserLoginModule } from 'src/app/modules/user-login/user-login.module';
+import { LoginInfoService } from 'src/app/services/login-info.service';
 import { UserLoginService } from 'src/app/services/user-login.service';
 
 @Component({
@@ -15,19 +13,17 @@ import { UserLoginService } from 'src/app/services/user-login.service';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  username:string;
-  userpwd:string;
-
-
-
   model:any =[];
   svc:UserLoginService;
-  cust=new UserLoginModule();
-  ngzone:NgZone;
+  cust= new UserLoginModule();
+  svc1:LoginInfoService;
+  ngZone:NgZone;
   router:Router;
-  constructor(svc:UserLoginService,ngZone:NgZone,router:Router) {
+  custList=new ReginfoModule();
+  constructor(svc:UserLoginService,svc1:LoginInfoService,ngZone:NgZone,router:Router) {
     this.svc = svc;
-    this.ngzone = ngZone;
+    this.svc1=svc1;
+    this.ngZone = ngZone;
     this.router=router;
    }
   ngOnInit(): void {
@@ -44,23 +40,29 @@ export class UserLoginComponent implements OnInit {
     document.getElementById('close-modal').click();
   }
   Login(loginForm:NgForm):void{
-    this.username = loginForm.value.name;
-    this.userpwd = loginForm.value.pwd;
-    console.log(this.cust);
-    this.svc.Login(this.username,this.userpwd).subscribe((data:string)=>{
-      if(data=="Login Successfull"){
-        localStorage.setItem("Uname",this.username);
-        setTimeout(()=>
-        {
-          this.ngzone.run(()=>this.router.navigateByUrl('/Dashboard'));
-        },1000); 
+    this.cust.Username = loginForm.value.name;
+    this.cust.Password = loginForm.value.pwd;
+    console.log(this.cust.Username,this.cust.Password);
+    this.svc.Login(this.cust.Username,this.cust.Password).subscribe((data:string)=>{
+      alert(data);
+      if(data=="Login Successfull")
+      {
+        localStorage.setItem("UserUname",this.cust.Username);
+        localStorage.setItem("UserLogged","true");
+        this.ngZone.run(()=>this.router.navigateByUrl('/Dashboard'));
+        this.svc1.UserLogin();
       }
       else{
         alert(data);
-        this.ngzone.run(()=>this.router.navigateByUrl('/UserLogin'));
       }
-      
-    })
+    },error => {
+
+      console.log(error);
+
+    alert ('Unexpected Error Occur...');}
+
+    )
+
   }
 
 

@@ -1,17 +1,16 @@
-import { Component, OnInit,NgZone } from '@angular/core';
-import { UserLoginService } from 'src/app/services/user-login.service';
-import { Router} from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmiCardInfoModule } from 'src/app/modules/emi-card-info/emi-card-info.module';
-import { UserLoginComponent } from 'src/app/components/user-login/user-login.component';
-import { NgForm } from '@angular/forms';
 import { OrderDetailsModule } from 'src/app/modules/order-details/order-details.module';
+import { UserLoginService } from 'src/app/services/user-login.service';
+import { UserLoginComponent } from '../user-login/user-login.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
   model:any=[];
   svc:UserLoginService;
   ngzone:NgZone;
@@ -51,11 +50,12 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.custusername = localStorage.getItem("Uname");
+    this.custusername = localStorage.getItem("UserUname");
     this.svc.GetCardDetails(this.custusername).subscribe((data:EmiCardInfoModule)=>
     {
+      console.log(data)
       this.custname = data.CustName;
-      this.regno= data.RegNumber;
+      localStorage.setItem("LoggedRegNumber",""+data.RegNumber);
       this.cardno=data.CardNumber;
       this.validity=data.ValidityPeriod;
       this.cardtype=data.CardType;

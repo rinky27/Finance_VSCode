@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class EmiCardInfoModule { 
+  
   CardNumber:number;
   RegNumber:number;
   CardType:string;
